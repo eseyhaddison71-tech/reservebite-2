@@ -1,1893 +1,1790 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReserveBite - Hotel Ultra Max</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ReserveBite - Profile</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #f7f8f7;
+    }
+
+    .green {
+      color: #075c42;
+    }
+
+    .bg-green {
+      background: #075c42;
+    }
+
+    .border-green {
+      border-color: #075c42;
+    }
+
+    .sidebar-item.active {
+      background: #dff3eb;
+      color: #075c42;
+      font-weight: 600;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .notification-panel {
+      transform-origin: top right;
+    }
+
+    .modal {
+      display: none;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #075c42;
+      box-shadow: 0 0 0 2px rgba(7, 92, 66, 0.08);
+    }
+  </style>
 </head>
 
-<body class="bg-[#f7f7f7] text-gray-800 font-sans">
+<body class="min-h-screen text-gray-700">
 
-    <!-- Navbar-->
-    <div class="bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-            <!-- Logo -->
-            <h1 class="text-2xl font-bold text-green-800 italic tracking-tight" style="font-family: 'Georgia', serif;">
-                ReserveBite
-            </h1>
+<header class="bg-white border-b border-gray-200 sticky top-0 z-40">
 
-            <!-- Search Bar -->
-            <div class="relative w-full max-w-md mx-8">
-                <input type="text"
-                       placeholder="Search restaurant and cuisines..."
-                       class="w-full border border-gray-200 rounded-full py-2.5 pl-5 pr-12 text-sm text-gray-600 outline-none focus:border-green-600">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" 
-                     class="w-5 h-5 text-gray-400 absolute right-4 top-1/2 -translate-y-1/2" 
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </div>
+  <div class="max-w-[1250px] mx-auto px-5 h-[64px]
+              flex items-center justify-between">
 
-            <!-- Right Side -->
-            <div class="flex items-center gap-3">
-
-                <!-- Location -->
-                <div class="flex items-center gap-2 border border-gray-200 rounded-xl px-3 py-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-
-                    <div class="flex flex-col leading-tight">
-                        <span class="text-xs text-gray-500">Your Location</span>
-                        <span class="text-sm font-medium text-gray-800">Varanasi</span>
-                    </div>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
-
-                <!-- Notification -->
-                <button class="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                </button>
-
-                <!-- Profile -->
-                <button class="w-10 h-10 bg-green-800 rounded-xl flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </button>
-
-            </div>
-        </div>
+    <!-- Logo -->
+    <div
+      onclick="showPage('restaurants')"
+      class="text-[19px] font-bold text-[#075c42] cursor-pointer"
+    >
+      ReserveBite
     </div>
 
-    <!-- MAIN CONTENT-->
-    <div class="max-w-7xl mx-auto px-4 py-4 grid grid-cols-1 lg:grid-cols-5 gap-6">
+    <!-- Search -->
+    <div class="hidden md:flex items-center w-[330px]">
 
-        <!-- LEFT COLUMN -->
-        <div class="lg:col-span-3 space-y-5">
+      <div class="relative w-full">
 
+        <i data-lucide="search"
+           class="absolute left-3 top-1/2 -translate-y-1/2
+                  w-4 h-4 text-gray-400"></i>
 
-    <!--Hero Image-->
-    <div class="rounded-lg overflow-hidden">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search restaurants..."
+          oninput="searchRestaurants()"
+          class="w-full h-9 pl-9 pr-3
+                 border border-gray-200 rounded-md
+                 text-xs bg-white"
+        />
 
-        <img src="images/image 6.png"
-             alt="Restaurant"
-             class="w-full h-64 object-cover">
-
+      </div>
+<body class="bg-grey-50 min-h-screen">
+  <div class="relative min-h-screen">
+    <div class="absolute top-6 right-6">
+      <div class="flex items-center gap-3 bg-white border border-gray-200
+      rounded-xl px-5 py-3 shadow-sm hover:shadow-md">
+    </div>
+    </div>
     </div>
 
-
-    <!--Hotel Info-->
-    <div class="bg-white rounded-lg p-4 shadow-sm">
-
-        <div class="flex justify-between items-start">
-
-            <h2 class="text-2xl font-semibold text-green-900">
-                Hotel Ultra Max
-            </h2>
-
-            <span class="text-sm text-gray-600">
-
-                &#9734; 4.5
-
-                <span class="text-green-600 underline">
-                    | 450 Reviews
-                </span>
-
-            </span>
-
-        </div>
-
-
-        <div class="grid grid-cols-2 gap-4
-                    text-sm text-gray-600 mt-4">
-
-            <p>
-
-                <span class="border border-gray-800
-                             rounded-full
-                             w-5 h-5
-                             inline-flex
-                             items-center
-                             justify-center
-                             text-xs
-                             text-gray-800">
-
-                    &#36;
-
-                </span>
-
-                &#8377; 2,000 for 2 | North Indian
-
-            </p>
-
-
-            <p class="flex items-center gap-2 text-gray-600">
-
-                <svg width="18"
-                     height="18"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                     class="text-gray-500 flex-shrink-0">
-
-                    <path d="M12 21C12 21 19 15.5 19 9.5C19 5.91 15.87 3 12 3C8.13 3 5 5.91 5 9.5C5 15.5 12 21 12 21Z"
-                          stroke="currentColor"
-                          stroke-width="1.7"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"/>
-
-                    <circle cx="12"
-                            cy="9.5"
-                            r="2.2"
-                            stroke="currentColor"
-                            stroke-width="1.7"/>
-
-                </svg>
-
-                Connaught Place, Central Delhi
-
-            </p>
-
-
-            <p>
-
-                <span class="text-gray-400">
-                    &#x1F6A9;&#xFE0E;
-                </span>
-
-                <span class="text-green-600">
-                    0.7 km
-                </span>
-
-                from Banaras Ghats
-
-            </p>
-
-
-            <p>
-
-                <span class="text-green-600">
-                    &#9201; Open from
-                </span>
-
-                10:00 AM - 11:00 PM
-
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!--Available Offers-->
-    <div class="bg-white rounded-lg p-4 shadow-sm">
-
-        <h3 class="font-semibold mb-3 text-green-900">
-            Available Offers
-        </h3>
-
-
-        <div class="space-y-2 text-sm">
-
-            <div class="flex justify-between items-center
-                        border border-green-200
-                        bg-green-200
-                        rounded-lg
-                        p-3">
-
-                <span>
-                    Sun, 06:00 PM - 09:30 PM
-                </span>
-
-                <span>
-                    Offer availed
-                    <strong>100</strong> times
-                </span>
-
-                <button class="bg-green-600
-                               hover:bg-green-700
-                               text-white text-xs
-                               px-3 py-2 rounded">
-
-                    Avail Offer
-
-                </button>
-
-            </div>
-
-
-            <div class="flex justify-between items-center
-                        border border-green-200
-                        bg-green-200
-                        rounded-lg
-                        p-3">
-
-                <span>
-                    Sun, 06:00 PM - 09:30 PM
-                </span>
-
-                <span>
-                    Offer availed
-                    <strong>100</strong> times
-                </span>
-
-                <button class="bg-green-600
-                               hover:bg-green-700
-                               text-white text-xs
-                               px-3 py-2 rounded">
-
-                    Avail Offer
-
-                </button>
-
-            </div>
-
-
-            <div class="flex justify-between items-center
-                        border border-green-200
-                        bg-green-200
-                        rounded-lg
-                        p-3">
-
-                <span>
-                    Sun, 06:00 PM - 09:30 PM
-                </span>
-
-                <span>
-                    Offer availed
-                    <strong>100</strong> times
-                </span>
-
-                <button class="bg-green-600
-                               hover:bg-green-700
-                               text-white text-xs
-                               px-3 py-2 rounded">
-
-                    Avail Offer
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="text-center mt-4">
-
-            <a href="#"
-               class="text-blue-500 underline text-sm">
-
-                See all offers (+10 more)
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!--Restaurant Menu-->
-    <div class="bg-white rounded-lg p-4 shadow-sm">
-
-        <h3 class="font-semibold mb-3 text-green-900">
-            Restaurant Menus
-        </h3>
-
-
-        <div class="grid grid-cols-4 gap-3">
-
-            <div>
-
-                <img src="images/image 8.png"
-                     alt="Food Menu"
-                     class="rounded-md w-full h-24 object-cover">
-
-                <p class="text-xs text-gray-600 mt-1">
-
-                    Food Menu
-
-                    <span class="text-gray-400">
-                        (2 Pages)
-                    </span>
-
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <img src="images/image 8.png"
-                     alt="Food Menu"
-                     class="rounded-md w-full h-24 object-cover">
-
-                <p class="text-xs text-gray-600 mt-1">
-
-                    Food Menu
-
-                    <span class="text-gray-400">
-                        (2 Pages)
-                    </span>
-
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <img src="images/image 8.png"
-                     alt="Food Menu"
-                     class="rounded-md w-full h-24 object-cover">
-
-                <p class="text-xs text-gray-600 mt-1">
-
-                    Food Menu
-
-                    <span class="text-gray-400">
-                        (2 Pages)
-                    </span>
-
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <img src="images/image 8.png"
-                     alt="Food Menu"
-                     class="rounded-md w-full h-24 object-cover">
-
-                <p class="text-xs text-gray-600 mt-1">
-
-                    Food Menu
-
-                    <span class="text-gray-400">
-                        (2 Pages)
-                    </span>
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!--FOOD MENU-->
-    <details class="bg-white rounded-lg p-4 shadow-sm">
-
-        <!--Food Menu Header-->
-        <summary class="flex justify-between items-center
-                        cursor-pointer list-none">
-
-            <h3 class="font-semibold text-green-900">
-                Food Menu
-            </h3>
-
-
-            <span class="w-6 h-6
-                         border border-green-600
-                         text-green-600
-                         rounded-full
-                         flex items-center
-                         justify-center">
-
-                +
-
-            </span>
-
-        </summary>
-<!--Search Bar-->
-<div class="mt-4">
-
-    <input
-        type="text"
-        placeholder="Search restuarant and cuisines...."
-        class="w-full
-               border border-gray-300
-               rounded-lg
-               px-4 py-2
-               text-sm
-               focus:outline-none
-               focus:border-green-600">
-
-</div>
-
-
-<!--Food List-->
-<div class="mt-4 space-y-3">
-
-
-    <!--Food 1-->
-    <div class="flex items-center gap-3
-                border-t pt-3">
-
-        <img src="images/image 15.png"
-             alt="Garden Vegetable Salad"
-             class="w-20 h-16
-                    object-cover
-                    rounded-lg">
-
-        <div class="flex-1">
-
-            <h4 class="font-semibold text-green-900">
-                Garden Vegetable Salad
-            </h4>
-
-            <p class="text-sm text-green-600">
-                $30
-            </p>
-
-        </div>
-
-
-        <!--Stars and Quantity-->
-        <div class="flex flex-col items-center gap-1">
-
-            <!--Stars-->
-            <span class="text-yellow-400 text-sm">
-                &#9733;&#9733;&#9733;&#9733;&#9734;
-            </span>
-
-            <!--Quantity-->
-            <div class="flex items-center gap-2">
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    -
-                </button>
-
-                <span>1</span>
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    +
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!--Food 2-->
-    <div class="flex items-center gap-3
-                border-t pt-3">
-
-        <img src="images/image 15.png"
-             alt="Garden Vegetable Salad"
-             class="w-20 h-16
-                    object-cover
-                    rounded-lg">
-
-        <div class="flex-1">
-
-            <h4 class="font-semibold text-green-900">
-                Garden Vegetable Salad
-            </h4>
-
-            <p class="text-sm text-green-600">
-                $30
-            </p>
-
-        </div>
-
-
-        <!--Stars and Quantity-->
-        <div class="flex flex-col items-center gap-1">
-
-            <!--Stars-->
-            <span class="text-yellow-400 text-sm">
-                &#9733;&#9733;&#9733;&#9733;&#9734;
-            </span>
-
-            <!--Quantity-->
-            <div class="flex items-center gap-2">
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    -
-                </button>
-
-                <span>1</span>
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    +
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!--Food 3-->
-    <div class="flex items-center gap-3
-                border-t pt-3">
-
-        <img src="images/image 15.png"
-             alt="Garden Vegetable Salad"
-             class="w-20 h-16
-                    object-cover
-                    rounded-lg">
-
-        <div class="flex-1">
-
-            <h4 class="font-semibold text-green-900">
-                Garden Vegetable Salad
-            </h4>
-
-            <p class="text-sm text-green-600">
-                $30
-            </p>
-
-        </div>
-
-
-        <!--Stars and Quantity-->
-        <div class="flex flex-col items-center gap-1">
-
-            <!--Stars-->
-            <span class="text-yellow-400 text-sm">
-                &#9733;&#9733;&#9733;&#9733;&#9734;
-            </span>
-
-            <!--Quantity-->
-            <div class="flex items-center gap-2">
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    -
-                </button>
-
-                <span>1</span>
-
-                <button
-                    type="button"
-                    class="w-5 h-5
-                           border rounded
-                           flex items-center
-                           justify-center">
-                    +
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!--Food 4-->
-    <div class="flex items-center gap-3
-                border-t pt-3">
-
-        <img src="images/image 15.png"
-             alt="Garden Vegetable Salad"
-             class="w-20 h-16
-                    object-cover
-                    rounded-lg">
-
-        <div class="flex-1">
-
-            <h4 class="font-semibold text-green-900">
-                Garden Vegetable Salad
-            </h4>
-
-            <p class="text-sm text-green-600">
-                $30
-            </p>
-
-        </div>
-
-<!--Stars and Quantity-->
-<div class="flex flex-col items-center gap-1">
-
-    <!--Stars-->
-    <span class="text-yellow-400 text-sm">
-        &#9733;&#9733;&#9733;&#9733;&#9734;
-    </span>
-
-
-    <!--Quantity-->
+    <!-- Header Right -->
     <div class="flex items-center gap-2">
 
-        <button
-            type="button"
-            class="w-5 h-5
-                   border rounded
-                   flex items-center
-                   justify-center">
-            -
-        </button>
-
-        <span>1</span>
+      <!-- Notification -->
+      <div class="relative">
 
         <button
-            type="button"
-            class="w-5 h-5
-                   border rounded
-                   flex items-center
-                   justify-center">
-            +
+          onclick="toggleNotifications()"
+          class="w-9 h-9 border border-gray-200
+                 rounded-md flex items-center justify-center
+                 hover:bg-gray-50"
+        >
+          <i data-lucide="bell"
+             class="w-4 h-4 text-gray-600"></i>
+
         </button>
 
+        <!-- Notification Dropdown -->
+        <div
+          id="notificationPanel"
+          class="hidden absolute right-0 top-11
+                 w-[300px] bg-white rounded-lg
+                 shadow-xl border border-gray-200 z-50"
+        >
+
+          <div class="px-4 py-3 border-b">
+            <div class="flex justify-between">
+              <h3 class="font-semibold text-sm">
+                Notifications
+              </h3>
+
+              <button
+                onclick="markNotificationsRead()"
+                class="text-[10px] text-[#075c42]"
+              >
+                Mark all read
+              </button>
+            </div>
+          </div>
+
+          <div id="notificationList">
+
+            <div class="p-3 flex gap-3 hover:bg-gray-50">
+              <div class="w-7 h-7 rounded-full bg-blue-100
+                          flex items-center justify-center">
+                <i data-lucide="mail"
+                   class="w-3 h-3 text-blue-600"></i>
+              </div>
+
+              <div>
+                <p class="text-xs font-medium">
+                  Email Sent!!
+                </p>
+                <p class="text-[10px] text-gray-400">
+                  Checkyour inboxs or span folder
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 flex gap-3 hover:bg-gray-50">
+              <div class="w-7 h-7 rounded-full bg-purple-100
+                          flex items-center justify-center">
+                <i data-lucide="calendar"
+                   class="w-3 h-3 text-purple-600"></i>
+              </div>
+
+              <div>
+                <p class="text-xs font-medium">
+                  30min left, hurry up!!
+                </p>
+                <p class="text-[10px] text-gray-400">
+                  Hotel name is waiting for you
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 flex gap-3 hover:bg-gray-50">
+              <div class="w-7 h-7 rounded-full bg-red-100
+                          flex items-center justify-center">
+                <i data-lucide="x-circle"
+                   class="w-3 h-3 text-red-600"></i>
+              </div>
+
+              <div>
+                <p class="text-xs font-medium">
+                  Password changed
+                </p>
+                <p class="text-[10px] text-gray-400">
+                  Password was changes successfully!!
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 flex gap-3 hover:bg-gray-50">
+              <div class="w-7 h-7 rounded-full bg-green-100
+                          flex items-center justify-center">
+                <i data-lucide="check-circle"
+                   class="w-3 h-3 text-green-600"></i>
+              </div>
+
+              <div>
+                <p class="text-xs font-medium">
+                  Reservation successfully booked
+                </p>
+                <p class="text-[10px] text-gray-400">
+                  table booked in hotel name
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Profile -->
+
+      <button
+        onclick="showPage('restaurants')"
+          data-lucide="user" 
+        class="w-9 h-9 rounded-md bg-[#075c42]
+               text-white flex items-center justify-center
+               font-semibold text-xs">
+              
+     
+        
+      </button>
+
     </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="max-w-[1250px] mx-auto px-5 py-5">
+
+
+<!-- =========================================================
+     PROFILE INFORMATION
+========================================================= -->
+
+<section
+  class="bg-white border border-gray-200 rounded-lg
+         p-4 mb-4"
+>
+
+  <div class="flex flex-col md:flex-row gap-4">
+
+    <!-- Profile image -->
+    <div
+      class="w-[72px] h-[72px] rounded-lg
+             overflow-hidden bg-gray-200 shrink-0"
+    >
+      <img
+        src="image/mask.jgp.jpg"
+        class="w-full h-full object-cover"
+        alt="Profile"
+      />
+    </div>
+
+    <div class="flex-1">
+
+      <h1 class="text-base font-semibold text-gray-900">
+        Prashant Kumar Singh
+      </h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-2 mt-2">
+
+        <div class="flex items-center gap-2 text-[11px]">
+          <i data-lucide="mail"
+             class="w-3.5 h-3.5 text-[#075c42]"></i>
+          officialprashant@gmail.com
+        </div>
+
+        <div class="flex items-center gap-2 text-[11px]">
+          <i data-lucide="mail"
+             class="w-3.5 h-3.5 text-[#075c42]"></i>
+          officialprashant@gmail.com
+        </div>
+
+        <div class="flex items-center gap-2 text-[11px]">
+          <i data-lucide="phone"
+             class="w-3.5 h-3.5 text-[#075c42]"></i>
+          +91 8009396321
+        </div>
+
+        <div class="flex items-center gap-2 text-[11px]">
+          <i data-lucide="map-pin"
+             class="w-3.5 h-3.5 text-[#075c42]"></i>
+          New Delhi, India
+        </div>
+
+        <div class="flex items-center gap-2 text-[11px]">
+          <i data-lucide="home"
+             class="w-3.5 h-3.5 text-[#075c42]"></i>
+          7 Hotels Booked
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     DASHBOARD LAYOUT
+========================================================= -->
+
+<div class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside class="bg-white border border-gray-200 rounded-lg p-2 h-fit space-y-2">
+
+  <button
+    class="sidebar-item active p-2 rounded-md"
+    onclick="showPage('restaurants', this)"
+  >
+    Saved Restaurants
+  </button>
+
+  <button
+    class="sidebar-item  p-2 rounded-md"
+    onclick="showPage('bookings', this)"
+  >
+    Bookings
+  </button>
+
+  <button
+    class="sidebar-item p-2 rounded-md"
+    onclick="showPage('payments', this)"
+  >
+    Payment Details
+  </button>
+
+  <button
+    class="sidebar-item p-2 rounded-md"
+    onclick="showPage('settings', this)"
+  >
+    Settings
+  </button>
+
+  <button
+    class="sidebar-item p-2 rounded-md"
+    onclick="showPage('reviews', this)"
+  >
+    <i data-lucide=""></i>
+    Reviews & Ratings
+  </button>
+
+  <button
+    class="sidebar-item p-2 rounded-md"
+    onclick="showPage('address', this)"
+  >
+    Saved Address
+  </button>
+
+</aside>
+
+
+<!-- =========================================================
+     CONTENT
+========================================================= -->
+
+<section>
+
+
+<!-- =========================================================
+     SAVED RESTAURANTS
+========================================================= -->
+
+<div id="restaurants" class="page active">
+
+  <div class="flex justify-between items-center mb-3">
+
+    <h2 class="font-semibold text-sm text-gray-800">
+      Saved Restaurants
+    </h2>
+
+    <div class="relative">
+      <i data-lucide="search"
+         class="absolute left-2.5 top-1/2
+                -translate-y-1/2 w-3 h-3 text-gray-400"></i>
+</i>
+      <input
+        id="restaurantSearch"
+        oninput="filterRestaurantCards()"
+        placeholder="Search restaurants..."
+        class="w-[180px] h-7 pl-7 text-[10px]
+               border border-gray-200 rounded"
+      />
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="restaurantGrid"
+    class="grid grid-cols-1 lg:grid-cols-2 gap-2"
+  >
+
+    <!-- Restaurant Card -->
+    <div
+      class="restaurant-card bg-white border border-gray-200
+             rounded-md p-2.5 flex gap-2.5"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[48px] h-[48px] object-cover rounded"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="text-[11px] font-semibold">
+            Hotel Name Detail
+          </h3>
+
+          <button
+            onclick="removeRestaurant(this)"
+            class="text-[9px] text-red-500"
+          >
+            Remove
+          </button>
+
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-1 text-[8px] text-gray-500">
+
+          <span class="flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>
+            New Delhi
+          </span>
+
+          <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            View Menu
+          </span>
+
+          <span class="flex item-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            Northern Food
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- More cards -->
+    <div
+      class="restaurant-card bg-white border border-gray-200
+             rounded-md p-2.5 flex gap-2.5"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[48px] h-[48px] object-cover rounded"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="text-[11px] font-semibold">
+            Hotel Name Detail
+          </h3>
+
+          <button
+            onclick="removeRestaurant(this)"
+            class="text-[9px] text-red-500"
+          >
+            Remove
+          </button>
+
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-1 text-[8px] text-gray-500">
+
+           <span class="flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>
+            New Delhi
+          </span>
+           <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            View Menu
+          </span>
+           <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            Northern Food
+          </span>
+          </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="restaurant-card bg-white border border-gray-200
+             rounded-md p-2.5 flex gap-2.5"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[48px] h-[48px] object-cover rounded"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="text-[11px] font-semibold">
+            Hotel Name Detail
+          </h3>
+
+          <button
+            onclick="removeRestaurant(this)"
+            class="text-[9px] text-red-500"
+          >
+            Remove
+          </button>
+
+        </div>
+
+        <div class="flex gap-2 mt-1 text-[8px] text-gray-500">
+
+           <span class="flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>
+            New Delhi
+          </span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            View Menu
+          </span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            Northern Food
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="restaurant-card bg-white border border-gray-200
+             rounded-md p-2.5 flex gap-2.5"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[48px] h-[48px] object-cover rounded"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="text-[11px] font-semibold">
+            Hotel Name
+          </h3>
+
+          <button
+            onclick="removeRestaurant(this)"
+            class="text-[9px] text-red-500"
+          >
+            Remove
+          </button>
+
+        </div>
+
+        <div class="flex gap-2 mt-1 text-[8px] text-gray-500">
+
+          <span class="flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>
+             New Dalhi
+          </span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            View Menu
+          </span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="book" class="w-2.5 h-2.5"></i>
+            Northern Food
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
-      </details>
 
-    <!--Reviews-->
-    <div class="bg-white rounded-lg p-4 shadow-sm">
 
-        <h3 class="font-semibold mb-5 text-green-900">
-            Reviews and Ratings
-        </h3>
+<!-- =========================================================
+     BOOKINGS
+========================================================= -->
 
+<div id="bookings" class="page">
 
-        <div class="grid grid-cols-3 gap-5">
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Current Bookings
+  </h2>
 
-            <!--Overall Rating-->
-            <div class="text-center">
+  <div class="bg-white border border-gray-200 rounded-md p-3 mb-5">
 
-                <p class="text-sm text-gray-500">
-                    Overall Rating & Reviews
-                </p>
+    <div class="flex gap-3">
 
-                <p class="text-5xl text-green-600 mt-3">
-                    4.5
-                </p>
+      <img
+        src="image/street.jpg.png"
+        class="w-[55px] h-[55px] rounded object-cover"
+      />
 
-                <div class="text-green-600 mt-2">
+      <div class="flex-1">
 
-                    &#9733; &#9733; &#9733; &#9733;
+        <div class="flex justify-between">
 
-                    <span class="text-gray-300">
-                        &#9734;
-                    </span>
+          <h3 class="font-semibold text-xs">
+            Hotel Name Detail
+          </h3>
 
-                </div>
-
-                <p class="text-xs text-gray-500 mt-4">
-
-                    Based on 200 reviews
-
-                    <a href="#"
-                       class="text-green-600 underline">
-                        Rate now
-                    </a>
-
-                </p>
-
-            </div>
-
-
-            <!--Rating-->
-            <div class="space-y-4">
-
-                <div class="flex items-center gap-2">
-
-                    <span class="text-xs">
-                        Dinning
-                    </span>
-
-                    <span class="text-green-600">
-
-                        &#9733; &#9733; &#9733; &#9733;
-
-                        <span class="text-gray-300">
-                            &#9734;
-                        </span>
-
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <span class="text-xs">
-                        Dinning
-                    </span>
-
-                    <span class="text-green-600">
-
-                        &#9733; &#9733; &#9733; &#9733;
-
-                        <span class="text-gray-300">
-                            &#9734;
-                        </span>
-
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <span class="text-xs">
-                        Dinning
-                    </span>
-
-                    <span class="text-green-600">
-
-                        &#9733; &#9733; &#9733; &#9733;
-
-                        <span class="text-gray-300">
-                            &#9734;
-                        </span>
-
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <span class="text-xs">
-                        Dinning
-                    </span>
-
-                    <span class="text-green-600">
-
-                        &#9733; &#9733; &#9733; &#9733;
-
-                        <span class="text-gray-300">
-                            &#9734;
-                        </span>
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <!--Rating Bars-->
-            <div class="space-y-5">
-
-                <div class="flex items-center gap-2">
-
-                    <div class="w-full h-2
-                                bg-gray-300
-                                rounded-full">
-
-                        <div class="w-[80%] h-2
-                                    bg-green-600
-                                    rounded-full">
-                        </div>
-
-                    </div>
-
-                    <span class="text-xs text-green-600">
-                        53
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <div class="w-full h-2
-                                bg-gray-300
-                                rounded-full">
-
-                        <div class="w-[80%] h-2
-                                    bg-green-600
-                                    rounded-full">
-                        </div>
-
-                    </div>
-
-                    <span class="text-xs text-green-600">
-                        53
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <div class="w-full h-2
-                                bg-gray-300
-                                rounded-full">
-
-                        <div class="w-[80%] h-2
-                                    bg-green-600
-                                    rounded-full">
-                        </div>
-
-                    </div>
-
-                    <span class="text-xs text-green-600">
-                        53
-                    </span>
-
-                </div>
-
-
-                <div class="flex items-center gap-2">
-
-                    <div class="w-full h-2
-                                bg-gray-300
-                                rounded-full">
-
-                        <div class="w-[80%] h-2
-                                    bg-green-600
-                                    rounded-full">
-                        </div>
-
-                    </div>
-
-                    <span class="text-xs text-green-600">
-                        53
-                    </span>
-
-                </div>
-
-            </div>
+          <span class="text-[8px] text-green-600 font-semibold">
+            CONFIRMED 
+          </span> 
 
         </div>
 
-    </div>
-
-
-    <!--Review Cards-->
-    <div class="grid grid-cols-2 gap-4 mt-4 text-xs">
-
-
-        <!--Review 1-->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-
-            <div class="flex gap-3">
-
-                <img src="images/image16.png"
-                     alt="Prashant Kumar Singh"
-                     class="w-8 h-8 rounded-full object-cover">
-
-                <div class="flex-1">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="font-semibold">
-                                Prashant Kumar Singh
-                            </p>
-
-                            <p class="text-gray-500">
-                                Reviewed 45 restuarants
-                            </p>
-
-                        </div>
-
-                        <span class="text-green-600">
-                            4.5 &#9734;
-                        </span>
-
-                    </div>
-
-
-                    <p class="mt-3 text-gray-600">
-
-                        If you wanna take a break from
-                        Varanasi you find a great location
-                        and hospitality in this rooftop in
-                        the heart of the town. Food is really
-                        tasty and staff really great!
-
-                    </p>
-
-
-                    <div class="grid grid-cols-3 gap-2 mt-3">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!--Review 2-->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-
-            <div class="flex gap-3">
-
-                <img src="images/image16.png"
-                     alt="Prashant Kumar Singh"
-                     class="w-8 h-8 rounded-full object-cover">
-
-                <div class="flex-1">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="font-semibold">
-                                Prashant Kumar Singh
-                            </p>
-
-                            <p class="text-gray-500">
-                                Reviewed 45 restuarants
-                            </p>
-
-                        </div>
-
-                        <span class="text-green-600">
-                            4.5 &#9734;
-                        </span>
-
-                    </div>
-
-
-                    <p class="mt-3 text-gray-600">
-
-                        If you wanna take a break from
-                        Varanasi you find a great location
-                        and hospitality in this rooftop in
-                        the heart of the town. Food is really
-                        tasty and staff really great!
-
-                    </p>
-
-
-                    <div class="grid grid-cols-3 gap-2 mt-3">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!--Review 3-->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-
-            <div class="flex gap-3">
-
-                <img src="images/image16.png"
-                     alt="Prashant Kumar Singh"
-                     class="w-8 h-8 rounded-full object-cover">
-
-                <div class="flex-1">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="font-semibold">
-                                Prashant Kumar Singh
-                            </p>
-
-                            <p class="text-gray-500">
-                                Reviewed 45 restuarants
-                            </p>
-
-                        </div>
-
-                        <span class="text-green-600">
-                            4.5 &#9734;
-                        </span>
-
-                    </div>
-
-
-                    <p class="mt-3 text-gray-600">
-
-                        If you wanna take a break from
-                        Varanasi you find a great location
-                        and hospitality in this rooftop in
-                        the heart of the town. Food is really
-                        tasty and staff really great!
-
-                    </p>
-
-
-                    <div class="grid grid-cols-3 gap-2 mt-3">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!--Review 4-->
-        <div class="bg-white rounded-lg p-4 shadow-sm">
-
-            <div class="flex gap-3">
-
-                <img src="images/image16.png"
-                     alt="Prashant Kumar Singh"
-                     class="w-8 h-8 rounded-full object-cover">
-
-                <div class="flex-1">
-
-                    <div class="flex justify-between">
-
-                        <div>
-
-                            <p class="font-semibold">
-                                 Prashant Kumar Singh
-                            </p>
-
-                            <p class="text-gray-500">
-                                Reviewed 45 restuarants
-                            </p>
-
-                        </div>
-
-                        <span class="text-green-600">
-                            4.5 &#9734;
-                        </span>
-
-                    </div>
-
-
-                    <p class="mt-3 text-gray-600">
-
-                        If you wanna take a break from
-                        Varanasi you find a great location
-                        and hospitality in this rooftop in
-                        the heart of the town. Food is really
-                        tasty and staff really great!
-
-                    </p>
-
-
-                    <div class="grid grid-cols-3 gap-2 mt-3">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                        <img src="images/image 11.png"
-                             alt="Food"
-                             class="w-full h-14
-                                    object-cover rounded">
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-    
-
-
-        <!--Right Column-->
-        <div class="lg:col-span-2 space-y-5">
-
-            <!--Choose Date-->
-            <div>
-
-                <h3 class="font-semibold mb-3 text-green-900">
-                    Choose date
-                </h3>
-
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-
-                    <!--Month-->
-                    <div class="flex justify-between items-center
-                                border-b border-gray-200 pb-4">
-
-                        <span class="text-sm">
-                            January 2022
-                        </span>
-
-                        <div class="flex gap-6 text-gray-500">
-
-                            <button>
-                                &#8249;
-                            </button>
-
-                            <button>
-                                &#8250;
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!--Calendar Days-->
-                    <div class="grid grid-cols-7
-                                text-center
-                                text-xs
-                                gap-y-5 mt-5">
-
-                        <span>MON</span>
-                        <span>TUE</span>
-                        <span>WED</span>
-                        <span>THU</span>
-                        <span>FRI</span>
-                        <span>SAT</span>
-                        <span>SUN</span>
-
-
-                        <span class="bg-green-600
-                                     text-white
-                                     rounded-full
-                                     w-6 h-6
-                                     mx-auto
-                                     flex items-center
-                                     justify-center">
-
-                            1
-
-                        </span>
-
-                        <span>2</span>
-                        <span>3</span>
-                        <span>4</span>
-                        <span>5</span>
-                        <span>6</span>
-
-                        <span class="relative">
-
-                            7
-
-                            <span class="absolute
-                                         w-1 h-1
-                                         bg-red-500
-                                         rounded-full
-                                         bottom-[-8px]
-                                         left-1/2">
-                            </span>
-
-                        </span>
-
-
-                        <span>8</span>
-                        <span>9</span>
-                        <span>10</span>
-                        <span>11</span>
-                        <span>12</span>
-                        <span>13</span>
-
-                        <span class="relative">
-
-                            14
-
-                            <span class="absolute
-                                         w-1 h-1
-                                         bg-red-500
-                                         rounded-full
-                                         bottom-[-8px]
-                                         left-1/2">
-                            </span>
-
-                        </span>
-
-
-                        <span class="relative">
-
-                            15
-
-                            <span class="absolute
-                                         w-1 h-1
-                                         bg-red-500
-                                         rounded-full
-                                         bottom-[-8px]
-                                         left-1/2">
-                            </span>
-
-                        </span>
-
-                        <span>16</span>
-                        <span>17</span>
-                        <span>18</span>
-                        <span>19</span>
-                        <span>20</span>
-                        <span>21</span>
-
-                        <span>22</span>
-                        <span>23</span>
-                        <span>24</span>
-                        <span>25</span>
-                        <span>26</span>
-                        <span>27</span>
-                        <span>28</span>
-
-                        <span>29</span>
-                        <span>30</span>
-                        <span>31</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!--Choose Time Slot-->
-            <div>
-
-                <h3 class="font-semibold mb-3 text-green-900">
-                    Choose time slot
-                </h3>
-
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-
-                    <!--Time Categories-->
-                    <div class="grid grid-cols-3
-                                text-center
-                                border-b-2
-                                border-green-200">
-
-                        <button class="pb-3 text-xs
-                                       font-semibold
-                                       text-green-900">
-
-                            BREAKFAST
-
-                        </button>
-
-                        <button class="pb-3 text-xs
-                                       font-semibold
-                                       text-green-600
-                                       border-b-2
-                                       border-green-600">
-
-                            LUNCH
-
-                        </button>
-
-                        <button class="pb-3 text-xs
-                                       font-semibold
-                                       text-green-900">
-
-                            DINNER
-
-                        </button>
-
-                    </div>
-
-
-                    <!--Time Buttons-->
-                    <div class="grid grid-cols-4 gap-2 mt-6">
-
-                        <button class="border border-blue-500
-                                       text-blue-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-blue-500
-                                       text-blue-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-green-500
-                                       text-green-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-red-500
-                                       text-red-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-red-500
-                                       text-red-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-red-500
-                                       text-red-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-red-500
-                                       text-red-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                        <button class="border border-blue-500
-                                       text-blue-600
-                                       rounded-lg px-2 py-2 text-xs">
-
-                            7:00 AM
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!--Food Choices-->
-            <div>
-
-                <h3 class="font-semibold mb-3 text-green-900">
-                    Food Chosen
-                </h3>
-
-                <div class="bg-white rounded-lg
-                            p-4 shadow-sm">
-
-
-                    <!--Food 1-->
-                    <div class="flex items-center gap-3 mb-5">
-
-                        <img src="images/image 15.png"
-                             alt="Garden Vegetable Salad"
-                             class="w-16 h-16 rounded-lg
-                                    object-cover">
-
-                        <div class="flex-1">
-
-                            <h4 class="font-semibold
-                                       text-green-900">
-
-                                Garden Vegetable Salad
-
-                            </h4>
-
-                            <p class="text-xs
-                                      text-green-900">
-
-                                Crisp & refreshing from garden
-
-                            </p>
-
-                            <p class="text-green-700
-                                      font-semibold mt-1">
-
-                                $30
-
-                            </p>
-
-                        </div>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                -
-
-                            </button>
-
-                            <span>1</span>
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                +
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!--Food 2-->
-                    <div class="flex items-center gap-3 mb-5">
-
-                        <img src="images/image 15.png"
-                             alt="Garden Vegetable Salad"
-                             class="w-16 h-16 rounded-lg
-                                    object-cover">
-
-                        <div class="flex-1">
-
-                            <h4 class="font-semibold
-                                       text-green-900">
-
-                                Garden Vegetable Salad
-
-                            </h4>
-
-                            <p class="text-xs
-                                      text-green-900">
-
-                                Crisp & refreshing from garden
-
-                            </p>
-
-                            <p class="text-green-700
-                                      font-semibold mt-1">
-
-                                $30
-
-                            </p>
-
-                        </div>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                -
-
-                            </button>
-
-                            <span>1</span>
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                +
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!--Food 3-->
-                    <div class="flex items-center gap-3 mb-5">
-
-                        <img src="images/image 15.png"
-                             alt="Garden Vegetable Salad"
-                             class="w-16 h-16 rounded-lg
-                                    object-cover">
-
-                        <div class="flex-1">
-
-                            <h4 class="font-semibold
-                                       text-green-900">
-
-                                Garden Vegetable Salad
-
-                            </h4>
-
-                            <p class="text-xs
-                                      text-green-900">
-
-                                Crisp & refreshing from garden
-
-                            </p>
-
-                            <p class="text-green-700
-                                      font-semibold mt-1">
-
-                                $30
-
-                            </p>
-
-                        </div>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                -
-
-                            </button>
-
-                            <span>1</span>
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                +
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!--Food 4-->
-                    <div class="flex items-center gap-3">
-
-                        <img src="images/image 15.png"
-                             alt="Garden Vegetable Salad"
-                             class="w-16 h-16 rounded-lg
-                                    object-cover">
-
-                        <div class="flex-1">
-
-                            <h4 class="font-semibold
-                                       text-green-900">
-
-                                Garden Vegetable Salad
-
-                            </h4>
-
-                            <p class="text-xs
-                                      text-green-900">
-
-                                Crisp & refreshing from garden
-
-                            </p>
-
-                            <p class="text-green-700
-                                      font-semibold mt-1">
-
-                                $30
-
-                            </p>
-
-                        </div>
-
-                        <div class="flex items-center gap-2">
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                -
-
-                            </button>
-
-                            <span>1</span>
-
-                            <button class="w-5 h-5
-                                           border rounded
-                                           flex items-center
-                                           justify-center">
-
-                                +
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!--Total Cost-->
-                    <div class="border-t
-                                border-gray-200
-                                mt-5 pt-5
-                                flex justify-between">
-
-                        <span class="text-lg
-                                     text-green-900">
-
-                            Total Cost:
-
-                        </span>
-
-                        <span class="text-lg
-                                     text-green-900">
-
-                            $120
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!--Booking Details-->
-            <div>
-
-                <h3 class="font-semibold mb-3 text-green-900">
-                    Booking details
-                </h3>
-
-                <div class="bg-white rounded-lg
-                            p-4 shadow-sm">
-
-
-                    <!--Choose Number Of Guest-->
-                    <label class="block text-sm mb-2">
-
-                        Choose number of guest:
-
-                    </label>
-
-                    <input type="text"
-                           placeholder="2 person"
-                           class="w-full border
-                                  border-gray-200
-                                  rounded-lg
-                                  px-4 py-3
-                                  text-sm
-                                  mb-5
-                                  outline-none">
-
-
-                    <!--Guest Name-->
-                    <label class="block text-sm mb-2">
-
-                        Enter guest name:
-
-                    </label>
-
-                    <input type="text"
-                           placeholder="Name for person who is booking"
-                           class="w-full border
-                                  border-gray-200
-                                  rounded-lg
-                                  px-4 py-3
-                                  text-sm
-                                  mb-5
-                                  outline-none">
-
-
-                    <!--Phone-->
-                    <label class="block text-sm mb-2">
-
-                        Enter phone detail:
-
-                    </label>
-
-                    <input type="tel"
-                           placeholder="Mobile number"
-                           class="w-full border
-                                  border-gray-200
-                                  rounded-lg
-                                  px-4 py-3
-                                  text-sm
-                                  mb-5
-                                  outline-none">
-
-
-                    <!--Special Request-->
-                    <button class="flex items-center gap-2
-                                   text-green-600
-                                   text-sm">
-
-                        <span class="w-5 h-5
-                                     border
-                                     border-green-600
-                                     rounded-full
-                                     flex items-center
-                                     justify-center">
-
-                            +
-
-                        </span>
-
-                        Add any special request (Optional)
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!--Discount Offer-->
-            <div class="bg-green-200
-                        text-green-950
-                        rounded-lg
-                        p-4
-                        flex items-center gap-3">
-
-             <span class="text-3xl">&#9432;</span>
-                <span class="font-semibold text-sm">
-
-                    20% Discount offer availed currently
-
-                </span>
-
-            </div>
-
-
-            <!--Book A Table-->
-            <button class="w-full
-                           bg-green-700
-                           hover:bg-green-800
-                           text-white
-                           font-semibold
-                           py-3
-                           rounded-lg">
-
-                Book a table
-
-            </button>
-
-
-        </div>
-
-    </div>
-     <!-- FOOTER-->
-<footer class="bg-green-900 text-white py-12 mt-10">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
-
-        <!-- Logo -->
-        <h2 class="text-3xl font-bold italic tracking-tight mb-3" style="font-family: 'Georgia', serif;">
-            ReserveBite
-        </h2>
-
-        <!-- Tagline -->
-        <p class="text-lg text-green-100 mb-6">
-            Connect with Us and Explore
+        <p class="text-[9px] text-gray-500 mt-1">
+          Riverside Mail, Gomti Nagar, Lucknow, Uttar Predesh, 231217
         </p>
 
-        <!-- Social Icons -->
-        <div class="flex items-center gap-6">
+        <p class="text-[9px] mt-1">
+          Sun, 09 Sep, 07:00 PM for 2 Quests
+        </p>
 
-            <!-- X (Twitter) -->
-            <a href="#" class="hover:opacity-80 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
+      </div>
 
-            <!-- Instagram -->
-            <a href="#" class="hover:opacity-80 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
-                </svg>
-            </a>
+      <button
+        onclick="showBookingModal()"
+        class="text-[9px] text-blue-600"
+      >
+        Check Details
+      </button>
 
-            <!-- LinkedIn -->
-            <a href="#" class="hover:opacity-80 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S.02 4.881.02 3.5C.02 2.12 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM5 8H0v16h5V8zm7.982 0H8.014v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0V24H24V13.869c0-7.88-8.922-7.593-11.018-3.714V8z"/>
-                </svg>
-            </a>
+    </div>
+
+  </div>
+
+
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Past Bookings
+  </h2>
+
+  <div id="pastBookings">
+
+    <div
+      class="booking-row bg-white border border-gray-200
+             rounded-md p-3 mb-2 flex gap-3"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[50px] h-[50px] rounded object-cover"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="font-semibold text-xs">
+            Hotel Name Detail
+          </h3>
+
+          <span class="text-[8px] text-red-500">
+            ENDED
+          </span>
 
         </div>
 
-    </div>
-</footer>
-</body>
+        <p class="text-[9px] text-gray-500">
+          Riverside Mail, Gomti Nagar, Lucknow, Uttar Predesh, 231217
+        </p>
 
+        <p class="text-[9px]">
+          Sun, 09 Jun, 07:00 PM · for 2 Quest
+        </p>
+
+      </div>
+
+      <button
+        onclick="showBookingModal()"
+        class="text-[9px] text-blue-600"
+      >
+        Check Details
+      </button>
+
+    </div>
+
+
+    <div
+      class="booking-row bg-white border border-gray-200
+             rounded-md p-3 mb-2 flex gap-3"
+    >
+
+      <img
+        src="image/street.jpg.png"
+        class="w-[50px] h-[50px] rounded object-cover"
+      />
+
+      <div class="flex-1">
+
+        <div class="flex justify-between">
+
+          <h3 class="font-semibold text-xs">
+            Hotel Name Detail
+          </h3>
+
+          <span class="text-[8px] text-red-500">
+            ENDED
+          </span>
+
+        </div>
+
+        <p class="text-[9px] text-gray-500">
+          Riverside Mail, Gomti Nagar, Lucknow, Uttar Predesh, 231217
+        </p>
+
+        <p class="text-[9px]">
+          sun, 09 Jun, 08:00 PM · for 2 Quest
+        </p>
+
+      </div>
+
+      <button
+        onclick="showBookingModal()"
+        class="text-[9px] text-blue-600"
+      >
+        Check Details
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PAYMENT DETAILS
+========================================================= -->
+
+<div id="payments" class="page">
+
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Manage Payment Methods
+  </h2>
+
+
+  <!-- Credit Card -->
+  <div class="bg-white border border-gray-200 rounded-md p-4 mb-4">
+
+    <div class="flex justify-between mb-3">
+
+      <h3 class="text-xs font-semibold">
+        Credit / Debit card
+      </h3>
+
+      <button
+        class="text-[9px] text-gray-400"
+      >
+        ˅
+      </button>
+
+    </div>
+
+    <input
+      placeholder="Enter your name..."
+      class="w-full h-8 border border-gray-200 rounded
+             px-3 text-[10px] mb-2"
+    />
+
+    <input
+      placeholder="Enter card number"
+      class="w-full h-8 border border-gray-200 rounded
+             px-3 text-[10px] mb-2"
+    />
+
+    <div class="grid grid-cols-2 gap-2">
+
+      <input
+        placeholder="CVV"
+        class="h-8 border border-gray-200 rounded
+               px-3 text-[10px]"
+      />
+
+      <input
+        placeholder="Expiry Date"
+        class="h-8 border border-gray-200 rounded
+               px-3 text-[10px]"
+      />
+
+    </div>
+
+    <div class="flex justify-end mt-3">
+
+      <button
+        onclick="savePayment()"
+        class="bg-[#075c42] text-white
+               px-5 py-2 rounded text-[9px]"
+      >
+        Save Details
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- UPI -->
+  <div class="bg-white border border-gray-200 rounded-md p-4">
+
+    <div class="flex justify-between mb-3">
+
+      <h3 class="text-xs font-semibold">
+        UPI
+      </h3>
+
+      <span class="text-[9px] text-gray-400">
+        Google Pay
+      </span>
+
+    </div>
+
+    <div class="grid grid-cols-2 gap-2">
+
+      <select
+        class="h-8 border border-gray-200 rounded
+               px-2 text-[10px]"
+      >
+        <option>Google Pay</option>
+        <option>PhonePe</option>
+        <option>Paytm</option>
+      </select>
+
+      <input
+        placeholder="Enter UPI ID"
+        class="h-8 border border-gray-200 rounded
+               px-3 text-[10px]"
+      />
+
+    </div>
+
+    <div class="flex justify-end mt-3">
+
+      <button
+        onclick="savePayment()"
+        class="bg-[#075c42] text-white
+               px-5 py-2 rounded text-[9px]"
+      >
+        Save Details
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     SETTINGS
+========================================================= -->
+
+<div id="settings" class="page">
+
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Settings
+  </h2>
+
+  <div class="bg-white border border-gray-200 rounded-md">
+
+    <button
+      onclick="changeSetting('Edit Profile')"
+      class="w-full flex justify-between p-4
+             border-b hover:bg-gray-50 text-xs"
+    >
+      Edit Profile
+      <span>›</span>
+    </button>
+
+    <button
+      onclick="changeSetting('Change Password')"
+      class="w-full flex justify-between p-4
+             border-b hover:bg-gray-50 text-xs"
+    >
+      Change Password
+      <span>›</span>
+    </button>
+
+    <button
+      onclick="changeSetting('Notification Settings')"
+      class="w-full flex justify-between p-4
+             border-b hover:bg-gray-50 text-xs"
+    >
+      Notification Settings
+      <span>›</span>
+    </button>
+
+    <button
+      onclick="logout()"
+      class="w-full flex justify-between p-4
+             text-red-500 hover:bg-red-50 text-xs"
+    >
+      Logout
+      <span>›</span>
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<div id="reviews" class="page">
+
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Reviews & Ratings
+  </h2>
+
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+
+    <div class="bg-white border border-gray-200 rounded-md p-3">
+
+      <div class="flex items-center gap-2">
+
+        <div class="w-7 h-7 rounded-full bg-gray-200"></div>
+
+        <div>
+          <p class="font-semibold text-[10px]">
+            Prashant Kumar Singh
+          </p>
+
+          <div class="text-yellow-500 text-[10px]">
+            <i class="fa-solid fa-star"></i>
+            ★★★★★ 
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-[9px] text-gray-500 mt-2">
+        if you wanna take a break from varanasi you find a great locatio and hospitality in this rooftop in the heart of the town. food is raelly tasty and staff really great!
+      </p>
+
+      <div class="flex gap-1 mt-2">
+
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+
+      </div>
+
+    </div>
+
+
+    <div class="bg-white border border-gray-200 rounded-md p-3">
+
+      <div class="flex items-center gap-2">
+
+        <div class="w-7 h-7 rounded-full bg-gray-200"></div>
+
+        <div>
+          <p class="font-semibold text-[10px]">
+            Prashant Kumar Singh
+          </p>
+
+          <div class="text-yellow-500 text-[10px]">
+            <i data-lucide="star rating "></i>
+            ★★★★★ 
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-[9px] text-gray-500 mt-2">
+               if you wanna take a break from varanasi you find a great locatio and hospitality in this rooftop in the heart of the town. food is raelly tasty and staff really great!</p>
+
+      <div class="flex gap-1 mt-2">
+
+        <img
+          src="image/cake.jpg.png"
+           class="w-10 h-10 rounded object-cover"
+        />
+
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+
+      </div>
+
+    </div>
+    <div class="bg-white border border-gray-200 rounded-md p-3">
+
+      <div class="flex items-center gap-2">
+
+        <div class="w-7 h-7 rounded-full bg-gray-200"></div>
+
+        <div>
+          <p class="font-semibold text-[10px]">
+            Prashant Kumar Singh
+          </p>
+
+          <div class="text-yellow-500 text-[10px]">
+            <i data-lucide="star rating "></i>
+            ★★★★★ 
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-[9px] text-gray-500 mt-2">
+               if you wanna take a break from varanasi you find a great locatio and hospitality in this rooftop in the heart of the town. food is raelly tasty and staff really great!</p>
+
+      <div class="flex gap-1 mt-2">
+
+        <img
+          src="image/cake.jpg.png"
+           class="w-10 h-10 rounded object-cover"
+        />
+
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+
+      </div>
+
+    </div>
+    <div class="bg-white border border-gray-200 rounded-md p-3">
+
+      <div class="flex items-center gap-2">
+
+        <div class="w-7 h-7 rounded-full bg-gray-200"></div>
+
+        <div>
+          <p class="font-semibold text-[10px]">
+            Prashant Kumar Singh
+          </p>
+
+          <div class="text-yellow-500 text-[10px]">
+            <i data-lucide="star rating "></i>
+            ★★★★★ 
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-[9px] text-gray-500 mt-2">
+               if you wanna take a break from varanasi you find a great locatio and hospitality in this rooftop in the heart of the town. food is raelly tasty and staff really great!</p>
+
+      <div class="flex gap-1 mt-2">
+
+        <img
+          src="image/cake.jpg.png"
+           class="w-10 h-10 rounded object-cover"
+        />
+
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+        <img
+          src="image/cake.jpg.png"
+          class="w-10 h-10 rounded object-cover"
+        />
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     SAVED ADDRESS
+========================================================= -->
+
+<div id="address" class="page">
+
+  <h2 class="font-semibold text-sm text-gray-800 mb-3">
+    Saved Address
+  </h2>
+
+  <div class="bg-white border border-gray-200 rounded-md p-4">
+
+    <div class="flex items-center gap-2 mb-3">
+
+      <i data-lucide="map-pin"
+         class="w-4 h-4 text-[#075c42]"></i>
+
+      <span class="text-xs font-semibold">
+        Primary Address
+      </span>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+
+      <select
+        class="h-9 border border-gray-200
+               rounded px-2 text-[10px]"
+      >
+        <option>Delhi</option>
+        <option>Mumbai</option>
+        <option>Bangalore</option>
+      </select>
+
+      <input
+        placeholder="City/District"
+        class="h-9 border border-gray-200
+               rounded px-3 text-[10px]"
+      />
+
+      <input
+        placeholder="PIN Code"
+        class="h-9 border border-gray-200
+               rounded px-3 text-[10px]"
+      />
+
+    </div>
+
+    <textarea
+      placeholder="Enter full address..."
+      class="w-full h-20 border border-gray-200
+             rounded p-3 mt-2 text-[10px] resize-none"
+    ></textarea>
+
+    <div class="flex justify-end">
+
+      <button
+        onclick="saveAddress()"
+        class="bg-[#075c42] text-white
+               px-5 py-2 rounded text-[9px]"
+      >
+        Save Address
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</section>
+
+</div>
+
+</main>
+
+
+<!-- =========================================================
+     BOOKING CONFIRMATION MODAL
+========================================================= -->
+
+<div
+  id="bookingModal"
+  class="modal fixed inset-0 z-[100]
+         items-center justify-center
+         bg-black/30 backdrop-blur-[2px]"
+>
+
+  <div
+    class="bg-white w-[420px] max-w-[90%]
+           rounded-lg shadow-2xl p-5
+           relative"
+  >
+
+    <button
+      onclick="closeBookingModal()"
+      class="absolute right-3 top-3
+             text-gray-400 hover:text-gray-700"
+    >
+      ✕
+    </button>
+
+    <div class="flex justify-center mb-3">
+
+      <div
+        class="w-12 h-12 rounded-full bg-green-100
+               flex items-center justify-center"
+      >
+
+        <i data-lucide="check"
+           class="w-6 h-6 text-green-600"></i>
+
+      </div>
+
+    </div>
+
+    <h2 class="text-center font-semibold text-sm">
+      Booking Confirmed
+    </h2>
+
+    <p class="text-center text-[9px] text-gray-400 mt-1">
+      Booking ID: 1326747
+    </p>
+
+    <div class="border-t border-b border-gray-100
+                my-4 py-3 text-center">
+
+      <h3 class="font-semibold text-xs">
+        Colours by Royal Cafe
+      </h3>
+
+      <p class="text-[8px] text-gray-400 mt-1">
+        46 Royal Road, New Delhi, India
+      </p>
+
+      <div class="grid grid-cols-3 mt-4">
+
+        <div>
+          <p class="text-[8px] text-gray-400">
+            Date
+          </p>
+          <p class="text-[9px] font-medium">
+            09 Sep 2023
+          </p>
+        </div>
+
+        <div>
+          <p class="text-[8px] text-gray-400">
+            Time
+          </p>
+          <p class="text-[9px] font-medium">
+            07:00 PM
+          </p>
+        </div>
+
+        <div>
+          <p class="text-[8px] text-gray-400">
+            Guests
+          </p>
+          <p class="text-[9px] font-medium">
+            2 Guests
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-3 gap-2">
+
+      <button
+        onclick="closeBookingModal()"
+        class="bg-blue-500 text-white
+               rounded py-2 text-[9px]"
+      >
+        Get Direction
+      </button>
+
+      <button
+        onclick="printBooking()"
+        class="bg-blue-600 text-white
+               rounded py-2 text-[9px]"
+      >
+        View Menu
+      </button>
+
+      <button
+        onclick="cancelBooking()"
+        class="bg-red-600 text-white
+               rounded py-2 text-[9px]"
+      >
+        Cancel Booking
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     RESTAURANT MODAL
+========================================================= -->
+
+<div
+  id="restaurantModal"
+  class="modal fixed inset-0 z-[100]
+         items-center justify-center
+         bg-black/30"
+>
+
+  <div class="bg-white w-[430px] max-w-[90%]
+              rounded-lg p-5 shadow-2xl">
+
+    <div class="flex justify-between items-center">
+
+      <h2
+        id="restaurantModalTitle"
+        class="font-semibold text-sm"
+      >
+        Restaurant
+      </h2>
+
+      <button
+        onclick="closeRestaurantModal()"
+        class="text-gray-400"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <img
+      id="restaurantModalImage"
+      src=""
+      class="w-full h-[160px] object-cover
+             rounded-lg mt-3"
+    />
+
+    <p class="text-xs font-medium mt-3">
+      Restaurant Details
+    </p>
+
+    <p class="text-[10px] text-gray-500 mt-2">
+      Enjoy delicious meals, comfortable seating,
+      excellent service and a great dining experience.
+    </p>
+
+    <div class="flex gap-2 mt-3">
+
+      <button
+        onclick="showBookingModal(); closeRestaurantModal()"
+        class="flex-1 bg-[#075c42] text-white
+               py-2 rounded text-[10px]"
+      >
+        Book a Table
+      </button>
+
+      <button
+        onclick="closeRestaurantModal()"
+        class="flex-1 border border-gray-200
+               py-2 rounded text-[10px]"
+      >
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+  id="toast"
+  class="fixed bottom-5 right-5
+         bg-[#075c42] text-white
+         px-4 py-3 rounded-lg shadow-xl
+         text-xs opacity-0 pointer-events-none
+         transition-all duration-300 z-[200]"
+>
+  Saved successfully
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+
+  /* ==========================================
+     PAGE NAVIGATION
+  ========================================== */
+
+  function showPage(pageId, clickedButton = null) {
+
+    // Hide every page
+    document.querySelectorAll(".page").forEach(page => {
+      page.classList.remove("active");
+    });
+
+    // Show selected page
+    const page = document.getElementById(pageId);
+
+    if (page) {
+      page.classList.add("active");
+    }
+
+    // Remove sidebar active state
+    document.querySelectorAll(".sidebar-item").forEach(item => {
+      item.classList.remove("active");
+    });
+
+    // Add active state
+    if (clickedButton) {
+      clickedButton.classList.add("active");
+    }
+
+    // If called programmatically
+    if (!clickedButton) {
+
+      const buttons = document.querySelectorAll(".sidebar-item");
+
+      const pageMap = {
+        restaurants: 0,
+        bookings: 1,
+        payments: 2,
+        settings: 3,
+        reviews: 4,
+        address: 5
+      };
+
+      if (pageMap[pageId] !== undefined) {
+        buttons[pageMap[pageId]].classList.add("active");
+      }
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  /* ==========================================
+     NOTIFICATIONS
+  ========================================== */
+
+  function toggleNotifications() {
+
+    const panel =
+      document.getElementById("notificationPanel");
+
+    panel.classList.toggle("hidden");
+  }
+
+
+  function markNotificationsRead() {
+
+    const list =
+      document.getElementById("notificationList");
+
+    list.style.opacity = "0.5";
+
+    showToast("Notifications marked as read");
+
+    document.querySelector(".absolute.bg-red-500")
+      ?.remove();
+  }
+
+
+  // Close notification when clicking elsewhere
+  document.addEventListener("click", function(event) {
+
+    const panel =
+      document.getElementById("notificationPanel");
+
+    const button =
+      event.target.closest("button");
+
+    if (
+      panel &&
+      !panel.contains(event.target) &&
+      !event.target.closest(".relative")
+    ) {
+      panel.classList.add("hidden");
+    }
+
+  });
+
+
+  /* ==========================================
+     RESTAURANT SEARCH
+  ========================================== */
+
+  function filterRestaurantCards() {
+
+    const search =
+      document
+        .getElementById("restaurantSearch")
+        .value
+        .toLowerCase();
+
+    document
+      .querySelectorAll(".restaurant-card")
+      .forEach(card => {
+
+        const text =
+          card.innerText.toLowerCase();
+
+        card.style.display =
+          text.includes(search)
+            ? "flex"
+            : "none";
+      });
+  }
+
+
+  function searchRestaurants() {
+
+    const search =
+      document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    if (search.length > 0) {
+
+      showPage("restaurants");
+
+      document
+        .getElementById("restaurantSearch")
+        .value = search;
+
+      filterRestaurantCards();
+    }
+  }
+
+
+  /* ==========================================
+     REMOVE RESTAURANT
+  ========================================== */
+
+  function removeRestaurant(button) {
+
+    const card =
+      button.closest(".restaurant-card");
+
+    card.style.opacity = "0";
+
+    setTimeout(() => {
+
+      card.remove();
+
+      showToast(
+        "Restaurant removed from saved restaurants"
+      );
+
+    }, 250);
+  }
+
+
+  /* ==========================================
+     RESTAURANT DETAILS
+  ========================================== */
+
+  function viewRestaurant(name) {
+
+    const modal =
+      document.getElementById("restaurantModal");
+
+    document
+      .getElementById("restaurantModalTitle")
+      .innerText = name;
+
+    document
+      .getElementById("restaurantModalImage")
+      .src =
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80";
+
+    modal.classList.add("show");
+  }
+
+
+  function closeRestaurantModal() {
+
+    document
+      .getElementById("restaurantModal")
+      .classList.remove("show");
+  }
+
+
+  /* ==========================================
+     BOOKING MODAL
+  ========================================== */
+
+  function showBookingModal() {
+
+    document
+      .getElementById("bookingModal")
+      .classList.add("show");
+
+    lucide.createIcons();
+  }
+
+
+  function closeBookingModal() {
+
+    document
+      .getElementById("bookingModal")
+      .classList.remove("show");
+  }
+
+
+  function cancelBooking() {
+
+    closeBookingModal();
+
+    showToast("Booking cancelled");
+  }
+
+
+  function printBooking() {
+
+    showToast("Menu opened");
+  }
+
+
+  /* ==========================================
+     PAYMENTS
+  ========================================== */
+
+  function savePayment() {
+
+    showToast(
+      "Payment method saved successfully"
+    );
+  }
+
+
+  /* ==========================================
+     ADDRESS
+  ========================================== */
+
+  function saveAddress() {
+
+    showToast(
+      "Address saved successfully"
+    );
+  }
+
+
+  /* ==========================================
+     SETTINGS
+  ========================================== */
+
+  function changeSetting(setting) {
+
+    showToast(setting + " selected");
+  }
+
+
+  function logout() {
+
+    if (
+      confirm("Are you sure you want to logout?")
+    ) {
+
+      showToast("Logged out successfully");
+
+    }
+
+  }
+
+
+  /* ==========================================
+     TOAST
+  ========================================== */
+
+  function showToast(message) {
+
+    const toast =
+      document.getElementById("toast");
+
+    toast.innerText = message;
+
+    toast.classList.remove(
+      "opacity-0",
+      "pointer-events-none"
+    );
+
+    toast.classList.add("opacity-100");
+
+    setTimeout(() => {
+
+      toast.classList.remove(
+        "opacity-100"
+      );
+
+      toast.classList.add(
+        "opacity-0",
+        "pointer-events-none"
+      );
+
+    }, 2500);
+  }
+
+
+  /* ==========================================
+     ESCAPE KEY
+  ========================================== */
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (event.key === "Escape") {
+
+        closeBookingModal();
+        closeRestaurantModal();
+
+        document
+          .getElementById("notificationPanel")
+          .classList.add("hidden");
+      }
+
+    }
+  );
+
+</script>
+
+</body>
 </html>
